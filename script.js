@@ -1,4 +1,4 @@
-'use-strict';
+'use strict';
 
 let numberOfFilms;
 
@@ -12,7 +12,7 @@ function start() {
 
 // start();
 
-const personalMovieDB = {
+let personalMovieDB = {
 	count: numberOfFilms,
 	movies: {},
 	actors: {},
@@ -22,12 +22,12 @@ const personalMovieDB = {
 
 function rememberMyFilms() {
 	for (let i = 0; i < 2; i++) {
-		const answer1 = prompt('Один из последних просмотренных фильмов?', ''),
-			answer2 = prompt('На сколько оцените его?', '');
+		const a = prompt('Один из последних просмотренных фильмов?', ''),
+			b = prompt('На сколько оцените его?', '');
 
-		if (answer1 != null && answer2 != null && answer1 != '' && answer2 != '' && answer1.length < 50) {
-			personalMovieDB.movies[answer1] = answer2;
-			console.log('Da');
+		if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+			personalMovieDB.movies[a] = b;
+			console.log('done');
 		} else {
 			console.log('error');
 			i--;
@@ -40,7 +40,7 @@ function rememberMyFilms() {
 function detectPersonalLevel() {
 	if (personalMovieDB.count < 10) {
 		console.log('Просмотрено довольно мало фильмов');
-	} else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
+	} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
 		console.log('Вы классический зритель');
 	} else if (personalMovieDB.count > 30) {
 		console.log('Вы киноман');
@@ -51,22 +51,21 @@ function detectPersonalLevel() {
 
 // detectPersonalLevel();
 
-function showMyDB() {
-	if (personalMovieDB.privat == false) {
+function showMyDB (hidden) {
+	if (!hidden) {
 		console.log(personalMovieDB);
 	}
 }
 
-// showMyDB();
+// showMyDB(personalMovieDB.privat);
 
-function writeYourGenres() {
-	for (let i = 0; i < 3; i++) {
-		personalMovieDB.genres [i] = prompt(('Ваш любимый жанр под номером '+ (i+1) ), '');
+function writeYourGenres () {
+	for (let i = 1; i <= 3; i++) {
+		personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`, '');
 	}
 }
 
-writeYourGenres();
-console.log(personalMovieDB.genres);
+// writeYourGenres();
 
 
 
